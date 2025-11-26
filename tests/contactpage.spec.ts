@@ -5,6 +5,6 @@ import '../setup/setup'
 
 test('Displaying form', async ({page}) => {
     const navBar = new NavBar(page);
-    await navBar.clickOnLink(' Contact us');
+    await navBar.clickOnTab(' Contact us');
     await expect(page.getByText('Get In Touch')).toBeVisible();
 })

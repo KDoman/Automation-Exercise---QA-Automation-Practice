@@ -1,9 +1,7 @@
 import { test } from '@playwright/test';
-import { StartPage } from '../classes/start.page';
-
-export const url = 'https://automationexercise.com/';
+import { PropertiesPage } from '../classes/properties.page';
 
 test.beforeEach(async ({ page }) => {
-  const startPage = new StartPage(page)
+  const startPage = new PropertiesPage(page)
   await startPage.openBrowser();
 });

@@ -3,12 +3,12 @@ import { Page,expect } from "@playwright/test";
 export class LoginPage{
     constructor(private page:Page){}
 
-    async fillInputs(email:string, password:string){
+    private async fillInputs(email:string, password:string){
         await this.page.locator('[data-qa="login-email"]').pressSequentially(email, {delay: 100});
         await this.page.locator('[data-qa="login-password"]').pressSequentially(password, {delay: 100});
     }
 
-    async sendForm(){
+    private async sendForm(){
         await this.page.getByRole('button', {name:'Login'}).click();
     }
 
@@ -18,5 +18,10 @@ export class LoginPage{
 
     async expectLoginFail(){
         await expect(this.page.getByText('Your email or password is incorrect!')).toBeVisible();
+    }
+
+    async login (email:string, password:string) {
+        await this.fillInputs(email,password);
+        await this.sendForm();
     }
 }

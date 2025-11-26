@@ -3,7 +3,7 @@ import { Page, expect } from "@playwright/test";
 export class NavBar{
     constructor(private page:Page){}
     
-    async clickOnLink (name:string) {
+    async clickOnTab (name:string) {
         await this.page.getByRole('link', {name}).click();
     }
 
@@ -11,7 +11,11 @@ export class NavBar{
         await this.page.getByAltText('Website for automation practice').click();
     }
 
-    async expectTitleToBe(title :string){
-        await expect(this.page).toHaveTitle(title);
+    async expectedLoggedOut() {
+        await expect(this.page.getByRole('link', {name: ' Delete Account'})).not.toBeVisible();
+    }
+
+    async expectedLoggedIn () {
+        await expect(this.page.getByRole('link', {name: ' Delete Account'})).toBeVisible();
     }
 }
