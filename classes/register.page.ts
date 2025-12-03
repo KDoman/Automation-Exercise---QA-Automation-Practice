@@ -5,7 +5,7 @@ export class RegisterPage{
     constructor(private page:Page){}
 
     async fillRegisterInputs(){
-        await this.page.locator('[data-qua="signup-name"]').pressSequentially(data.correctLogin);
-        await this.page.locator('[data-qua="signup-name"]').pressSequentially(data.correctPassword);
+        await this.page.locator('[data-qa="signup-name"]').pressSequentially(data.correctLogin);
+        await this.page.locator('[data-qa="signup-name"]').pressSequentially(data.correctPassword);
     }
 }

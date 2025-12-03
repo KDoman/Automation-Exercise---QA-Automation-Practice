@@ -4,7 +4,7 @@ export class NavBar{
     constructor(private page:Page){}
     
     async clickOnTab (name:string) {
-        await this.page.getByRole('link', {name}).click();
+        await this.page.getByRole('link', {name, exact: false}).click();
     }
 
     async clickOnLogo() {

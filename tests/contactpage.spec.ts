@@ -1,10 +1,19 @@
-import test, { expect } from "@playwright/test";
+import {test} from '../setup/baseTest'
 import {NavBar} from '../classes/navbar.page'
-import '../setup/setup'
+import { ContactPage } from '../classes/contact.page';
+import { PropertiesPage } from '../classes/properties.page';
+import {contactPageData} from '../setup/data'
 
-
-test('Displaying form', async ({page}) => {
+test('Displaying and sending form', async ({page}) => {
     const navBar = new NavBar(page);
+    const contactPage = new ContactPage(page);
+    const propertiesPage = new PropertiesPage(page);
+
     await navBar.clickOnTab(' Contact us');
-    await expect(page.getByText('Get In Touch')).toBeVisible();
+    await contactPage.expectFormToBeVisible();
+    await contactPage.fillContactPage(contactPageData.contactName, contactPageData.contactEmail,contactPageData.contactSubject,contactPageData.contactMessage, contactPageData.contactFile );
+    await contactPage.sendContactPage();
+    await contactPage.expectSuccessMessageToBeVisible();
+    await contactPage.clickGreenHomeButton();
+    await propertiesPage.expectPageToHaveURL('https://automationexercise.com/');
 })
