@@ -6,7 +6,7 @@ export class PropertiesPage {
   async expectPageToHaveTitle(title: string) {
     await expect(this.page).toHaveTitle(title);
   }
-  async expectPageToHaveURL(url: string) {
-    await expect(this.page).toHaveURL(url);
+  async expectPageToShowHomepage() {
+    await expect(this.page).toHaveURL("https://automationexercise.com/");
   }
 }

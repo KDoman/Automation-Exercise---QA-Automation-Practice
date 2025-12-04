@@ -15,5 +15,5 @@ test("Displaying and sending form", async ({ page }) => {
   await contactPage.sendContactPage();
   await contactPage.expectSuccessMessageToBeVisible();
   await contactPage.clickGreenHomeButton();
-  await propertiesPage.expectPageToHaveURL("https://automationexercise.com/");
+  await propertiesPage.expectPageToShowHomepage();
 });

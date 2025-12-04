@@ -13,5 +13,5 @@ test('If logo redirects to homepage', async({page}) => {
     const propertiesPage = new PropertiesPage(page);
     await navBar.clickOnTab(' Products')
     await navBar.clickOnLogo();
-    await propertiesPage.expectPageToHaveURL('https://automationexercise.com/')
+    await propertiesPage.expectPageToShowHomepage();
 })
