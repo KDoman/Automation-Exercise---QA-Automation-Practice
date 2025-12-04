@@ -27,4 +27,18 @@ export class ContactPage {
   async clickGreenHomeButton() {
     await this.page.locator(".btn.btn-success").click();
   }
+
+  async typeInSubscribeEmail() {
+    await this.page.locator("#susbscribe_email").fill("test@test.test");
+  }
+
+  async clickSubscribeButton() {
+    await this.page.locator("#subscribe").click();
+  }
+
+  async expectSuccessPopupToBeVisibleFor3Seconds() {
+    await expect(this.page.locator(".col-md-9.form-group")).toContainClass("hide");
+    await this.page.waitForTimeout(2500);
+    await expect(this.page.getByText("You have been successfully subscribed!")).not.toBeVisible();
+  }
 }

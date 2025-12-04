@@ -1,5 +1,5 @@
+import { NavBar } from "./../classes/navbar.page";
 import { test } from "../setup/baseTest";
-import { NavBar } from "../classes/navbar.page";
 import { ContactPage } from "../classes/contact.page";
 import { PropertiesPage } from "../classes/properties.page";
 import { contactPageData } from "../setup/data";
@@ -16,4 +16,14 @@ test("Displaying and sending form", async ({ page }) => {
   await contactPage.expectSuccessMessageToBeVisible();
   await contactPage.clickGreenHomeButton();
   await propertiesPage.expectPageToShowHomepage();
+});
+
+test("Sign up to subscription", async ({ page }) => {
+  const navBar = new NavBar(page);
+  const contactPage = new ContactPage(page);
+
+  await navBar.clickOnTab(" Contact us");
+  await contactPage.typeInSubscribeEmail();
+  await contactPage.clickSubscribeButton();
+  await contactPage.expectSuccessPopupToBeVisibleFor3Seconds();
 });
