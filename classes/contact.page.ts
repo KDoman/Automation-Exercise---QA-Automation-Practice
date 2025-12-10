@@ -21,7 +21,7 @@ export class ContactPage {
   }
 
   async expectSuccessMessageToBeVisible() {
-    await expect(this.page.locator(".status.alert.alert-success").getByText("Success! Your details have")).toBeVisible();
+    await expect(this.page.locator("#contact-page").getByText("Success! Your details have")).toBeVisible();
   }
 
   async clickGreenHomeButton() {

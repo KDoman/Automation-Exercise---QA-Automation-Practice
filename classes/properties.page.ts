@@ -9,4 +9,7 @@ export class PropertiesPage {
   async expectPageToShowHomepage() {
     await expect(this.page).toHaveURL("https://automationexercise.com/");
   }
+  async expectPageToShowWithEndpoint(endPoint: string) {
+    await expect(this.page).toHaveURL(`https://automationexercise.com${endPoint}`);
+  }
 }
