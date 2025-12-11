@@ -1,9 +1,9 @@
+import { NavBar } from "./../classes/navbar.page";
 import { test } from "../setup/baseTest";
-import { NavBar } from "../classes/navbar.page";
 import { LoginPage } from "../classes/login.page";
 import { loginPageData } from "../setup/data";
 
-test("Login process", async ({ page }) => {
+test("Test Case 2: Login User with correct email and password", async ({ page }) => {
   const navBar = new NavBar(page);
   const loginPage = new LoginPage(page);
 
@@ -12,7 +12,7 @@ test("Login process", async ({ page }) => {
   await loginPage.expectLoginSuccess();
 });
 
-test("Failed login process", async ({ page }) => {
+test("Test Case 3: Login User with incorrect email and password", async ({ page }) => {
   const navBar = new NavBar(page);
   const loginPage = new LoginPage(page);
 
@@ -21,7 +21,7 @@ test("Failed login process", async ({ page }) => {
   await loginPage.expectLoginFail();
 });
 
-test("Logout User", async ({ page }) => {
+test("Test Case 4: Logout User", async ({ page }) => {
   const navBar = new NavBar(page);
   const loginPage = new LoginPage(page);
 

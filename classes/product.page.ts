@@ -26,4 +26,30 @@ export class ProductPage {
   async expectOneItemInSummary() {
     await expect(this.page.locator("#cart_info_table > tbody")).toHaveCount(1);
   }
+
+  async expectAllProductsTitle() {
+    await expect(this.page.getByRole("heading", { name: "All Products" })).toBeVisible();
+  }
+
+  async fillSearchBar() {
+    await this.page.locator("#search_product").fill("Blue");
+  }
+
+  async clickSearchButton() {
+    await this.page.locator("#submit_search").click();
+  }
+
+  async expectSearchedProductsToBeDisplayed() {
+    await expect(this.page.getByRole("heading", { name: "Searched Products" })).toBeVisible();
+  }
+
+  async expectSearchedProductsToContainText() {
+    const items = this.page.locator(".productinfo.text-center > p");
+    const count = await items.count();
+
+    for (let i = 0; i < count; i++) {
+      const text = (await items.nth(i).innerText()).toLocaleLowerCase();
+      expect(text).toContain("blue");
+    }
+  }
 }

@@ -1,11 +1,6 @@
 const filePath = "./setup/example.png";
-
-interface loginPageDataType {
-  correctLogin: string;
-  correctPassword: string;
-  wrongLogin: string;
-  wrongPassword: string;
-}
+import { loginPageDataType, contactPageDataType, registerPageDataType } from "./interfaces";
+import { randomString } from "./utils";
 
 const loginPageData: loginPageDataType = {
   correctLogin: "doman99999999@wp.pl",
@@ -13,14 +8,6 @@ const loginPageData: loginPageDataType = {
   wrongLogin: "wroong@l0GIN.no",
   wrongPassword: "wroongPassW0Rd",
 };
-
-interface contactPageDataType {
-  contactName: string;
-  contactEmail: string;
-  contactSubject: string;
-  contactMessage: string;
-  contactFile: string;
-}
 
 const contactPageData: contactPageDataType = {
   contactName: "Admin",
@@ -30,4 +17,11 @@ const contactPageData: contactPageDataType = {
   contactFile: filePath,
 };
 
-export { loginPageData, contactPageData };
+const registerPageData: registerPageDataType = {
+  notRegisterName: randomString(7),
+  notRegisterEmail: randomString(8) + "@" + randomString(5),
+  registeredName: loginPageData.correctPassword,
+  registeredEmail: loginPageData.correctLogin,
+};
+
+export { loginPageData, contactPageData, registerPageData };
