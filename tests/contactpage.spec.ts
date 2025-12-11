@@ -4,7 +4,7 @@ import { ContactPage } from "../classes/contact.page";
 import { PropertiesPage } from "../classes/properties.page";
 import { contactPageData } from "../setup/data";
 
-test("Displaying and sending form", async ({ page }) => {
+test("Test Case 6: Contact Us Form", async ({ page }) => {
   const navBar = new NavBar(page);
   const contactPage = new ContactPage(page);
   const propertiesPage = new PropertiesPage(page);
@@ -18,7 +18,7 @@ test("Displaying and sending form", async ({ page }) => {
   await propertiesPage.expectPageToShowHomepage();
 });
 
-test("Sign up to subscription", async ({ page }) => {
+test("Test Case 10: Verify sign in to Subscription ", async ({ page }) => {
   const navBar = new NavBar(page);
   const contactPage = new ContactPage(page);
 

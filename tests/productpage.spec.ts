@@ -13,7 +13,7 @@ test.describe("Tests for product page - functionality", () => {
     await productPage.expectEightCategories();
   });
 
-  test("Add products in Card", async ({ page }) => {
+  test("Test Case 12: Add Products in Cart", async ({ page }) => {
     const navBar = new NavBar(page);
     const productPage = new ProductPage(page);
     const propertiesPage = new PropertiesPage(page);
@@ -27,7 +27,7 @@ test.describe("Tests for product page - functionality", () => {
     await propertiesPage.expectPageToShowWithEndpoint("/view_cart");
   });
 
-  test.only("Test Case: 9 Search Product", async ({ page }) => {
+  test("Test Case: 9 Search Product", async ({ page }) => {
     const navBar = new NavBar(page);
     const productPage = new ProductPage(page);
 
