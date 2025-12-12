@@ -6,7 +6,7 @@ export class ProductPage {
     await expect(this.page.locator(".category-products > .panel-default")).toHaveCount(3);
   }
 
-  async expectEightCategories() {
+  async expectEightBrands() {
     await expect(this.page.locator(".brands-name > ul > li")).toHaveCount(8);
   }
 
@@ -27,7 +27,7 @@ export class ProductPage {
     await expect(this.page.locator("#cart_info_table > tbody")).toHaveCount(1);
   }
 
-  async expectAllProductsTitle() {
+  async expectAllProductsTitleToBeVisible() {
     await expect(this.page.getByRole("heading", { name: "All Products" })).toBeVisible();
   }
 
@@ -51,5 +51,17 @@ export class ProductPage {
       const text = (await items.nth(i).innerText()).toLocaleLowerCase();
       expect(text).toContain("blue");
     }
+  }
+
+  async expectAllProductListToBeVisible() {
+    await expect(this.page.locator(".features_items > .col-sm-4")).toHaveCount(34);
+  }
+
+  async clickViewProductButtonOfFirstProduct() {
+    await this.page.locator(".features_items > .col-sm-4").nth(1).getByRole("link", { name: "View Product" }).click();
+  }
+
+  async expectProductDetailsToBeVisibl() {
+    await this.page.locator(".product-information ");
   }
 }
