@@ -1,7 +1,9 @@
-import {Page, expect} from '@playwright/test'
-import'../setup/setup'
+import { Page } from "@playwright/test";
 
-export class Home {
-    constructor(private page: Page){}
+export class HomePage {
+  constructor(private page: Page) {}
 
+  async clickViewProductButtonFirstProduct() {
+    await this.page.locator(".features_items").getByRole("link", { name: "View Product" }).first().click();
+  }
 }

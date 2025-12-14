@@ -1,4 +1,4 @@
-export function randomString(length: number) {
+export function randomString(length: number): string {
   var result = "";
   var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   var charactersLength = characters.length;
