@@ -1,14 +1,7 @@
-import { PropertiesPage } from "./../classes/properties.page";
-import { NavBar } from "../classes/navbar.page";
 import { test } from "../setup/baseTest";
-import { RegisterPage } from "../classes/register.page";
 import { registerPageData } from "../setup/data";
 
-test("Test Case 1: Register User", async ({ page }) => {
-  const navBar = new NavBar(page);
-  const registerPage = new RegisterPage(page);
-  const proppertiesPage = new PropertiesPage(page);
-
+test("Test Case 1: Register User", async ({ navBar, registerPage, assertionsPage }) => {
   await navBar.clickOnTab(" Signup / Login");
   await registerPage.fillRegisterInputs(registerPageData.notRegisterName, registerPageData.notRegisterEmail);
   await registerPage.clickSignUpButton();
@@ -17,13 +10,10 @@ test("Test Case 1: Register User", async ({ page }) => {
   await registerPage.clickCreateAccountButton();
   await registerPage.expectAccountToBeCreated();
   await registerPage.clickContinueButton();
-  await proppertiesPage.expectPageToShowHomepage();
+  await assertionsPage.expectPageToShowHomepage();
 });
 
-test("Test Case 5: Register User with existing email", async ({ page }) => {
-  const navBar = new NavBar(page);
-  const registerPage = new RegisterPage(page);
-
+test("Test Case 5: Register User with existing email", async ({ navBar, registerPage }) => {
   await navBar.clickOnTab(" Signup / Login");
   await registerPage.fillRegisterInputs(registerPageData.registeredName, registerPageData.registeredEmail);
   await registerPage.clickSignUpButton();

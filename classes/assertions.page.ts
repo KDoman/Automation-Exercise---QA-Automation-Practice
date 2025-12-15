@@ -1,6 +1,6 @@
 import { Page, expect } from "@playwright/test";
 
-export class PropertiesPage {
+export class AssertionsPage {
   constructor(private page: Page) {}
 
   async expectPageToHaveTitle(title: string) {

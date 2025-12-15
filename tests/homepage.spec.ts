@@ -1,16 +1,11 @@
 import { test } from "../setup/baseTest";
-import { NavBar } from "../classes/navbar.page";
-import { PropertiesPage } from "../classes/properties.page";
 
-test("Has title", async ({ page }) => {
-  const propertiesPage = new PropertiesPage(page);
-  await propertiesPage.expectPageToHaveTitle("Automation Exercise");
+test("Has title", async ({ assertionsPage }) => {
+  await assertionsPage.expectPageToHaveTitle("Automation Exercise");
 });
 
-test("If logo redirects to homepage", async ({ page }) => {
-  const navBar = new NavBar(page);
-  const propertiesPage = new PropertiesPage(page);
+test("If logo redirects to homepage", async ({ navBar, assertionsPage }) => {
   await navBar.clickOnTab(" Products");
   await navBar.clickOnLogo();
-  await propertiesPage.expectPageToShowHomepage();
+  await assertionsPage.expectPageToShowHomepage();
 });

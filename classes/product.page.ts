@@ -17,17 +17,6 @@ export class ProductPage {
     await this.page.getByText("Add to cart").nth(1).click();
   }
 
-  async clickOnAddToCartButtonOnDetailsPage() {
-    await this.page.getByText("Add to cart").click();
-  }
-
-  async expectAddedModalToBeDisplayed() {
-    await expect(this.page.locator(".modal-content")).toBeVisible();
-  }
-  async clickOnViewCartLink() {
-    await this.page.getByRole("link", { name: "View Cart" }).click();
-  }
-
   async expectOneItemInSummary() {
     await expect(this.page.locator("#cart_info_table > tbody")).toHaveCount(1);
   }
@@ -64,18 +53,5 @@ export class ProductPage {
 
   async clickViewProductButtonOfFirstProduct() {
     await this.page.locator(".features_items > .col-sm-4").nth(0).getByRole("link", { name: "View Product" }).click();
-  }
-
-  async expectProductDetailsToBeVisible() {
-    await expect(this.page.locator(".product-information").getByRole("heading")).toBeVisible();
-    await expect(this.page.locator(".product-information > p").nth(0)).toContainText("Category:");
-    await expect(this.page.locator(".product-information > span > span").nth(0)).toContainText("Rs.");
-    await expect(this.page.locator(".product-information > p").nth(1)).toContainText("Availability:");
-    await expect(this.page.locator(".product-information > p").nth(2)).toContainText("Condition:");
-    await expect(this.page.locator(".product-information > p").nth(3)).toContainText("Brand:");
-  }
-
-  async increaseQuantityProductTo(quantity: string) {
-    await this.page.locator("#quantity").fill(quantity);
   }
 }
