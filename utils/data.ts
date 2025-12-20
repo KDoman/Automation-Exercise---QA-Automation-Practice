@@ -1,6 +1,6 @@
-const filePath = "./setup/example.png";
-import { loginPageDataType, contactPageDataType, registerPageDataType } from "./interfaces";
-import { randomString } from "./utils";
+const filePath = "./utils/example.png";
+import { loginPageDataType, contactPageDataType, registerPageDataType } from "../types/interfaces";
+import { randomString } from "./helpers";
 
 const loginPageData: loginPageDataType = {
   correctLogin: "doman99999999@wp.pl",

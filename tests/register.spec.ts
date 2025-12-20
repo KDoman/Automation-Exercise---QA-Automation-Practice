@@ -1,7 +1,7 @@
 import { test } from "../setup/baseTest";
-import { registerPageData } from "../setup/data";
+import { registerPageData } from "../utils/data";
 
-test("Test Case 1: Register User", async ({ navBar, registerPage, assertionsPage }) => {
+test("Test Case 1: Register User", async ({ navBar, registerPage, baseAssertions }) => {
   await navBar.clickOnTab(" Signup / Login");
   await registerPage.fillRegisterInputs(registerPageData.notRegisterName, registerPageData.notRegisterEmail);
   await registerPage.clickSignUpButton();
@@ -10,7 +10,7 @@ test("Test Case 1: Register User", async ({ navBar, registerPage, assertionsPage
   await registerPage.clickCreateAccountButton();
   await registerPage.expectAccountToBeCreated();
   await registerPage.clickContinueButton();
-  await assertionsPage.expectPageToShowHomepage();
+  await baseAssertions.expectPageToShowHomepage();
 });
 
 test("Test Case 5: Register User with existing email", async ({ navBar, registerPage }) => {

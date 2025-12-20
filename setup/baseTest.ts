@@ -1,20 +1,22 @@
-import { TestCasesPage } from "./../classes/testcases.page";
-import { RegisterPage } from "./../classes/register.page";
-import { CartPage } from "./../classes/cart.page";
-import { HomePage } from "./../classes/home.page";
+import { PaymentPage } from "./../pages/payment.page";
+import { TestCasesPage } from "../pages/testcases.page";
+import { RegisterPage } from "../pages/register.page";
+import { CartPage } from "../pages/cart.page";
+import { HomePage } from "../pages/home.page";
 import { test as base } from "@playwright/test";
-import { NavBar } from "../classes/navbar.page";
-import { ContactPage } from "../classes/contact.page";
-import { AssertionsPage } from "../classes/assertions.page";
-import { LoginPage } from "../classes/login.page";
-import { ProductPage } from "../classes/product.page";
-import { ProductDetailsPage } from "../classes/productdetails.page";
-import { ModalElement } from "../classes/modal.element";
+import { NavBar } from "../components/navbar.component";
+import { ContactPage } from "../pages/contact.page";
+import { LoginPage } from "../pages/login.page";
+import { ProductPage } from "../pages/product.page";
+import { ProductDetailsPage } from "../pages/productdetails.page";
+import { ModalElement } from "../components/modal.component";
+import { BaseAssertions } from "../utils/base.assertions";
+import { CheckoutPage } from "../pages/checkout.page";
 
 type MyPages = {
   navBar: NavBar;
   contactPage: ContactPage;
-  assertionsPage: AssertionsPage;
+  baseAssertions: BaseAssertions;
   loginPage: LoginPage;
   productPage: ProductPage;
   homePage: HomePage;
@@ -23,6 +25,8 @@ type MyPages = {
   testCasesPage: TestCasesPage;
   productDetailsPage: ProductDetailsPage;
   modalElement: ModalElement;
+  checkoutPage: CheckoutPage;
+  paymentPage: PaymentPage;
 };
 
 export const test = base.extend<MyPages>({
@@ -40,8 +44,8 @@ export const test = base.extend<MyPages>({
   contactPage: async ({ page }, use) => {
     await use(new ContactPage(page));
   },
-  assertionsPage: async ({ page }, use) => {
-    await use(new AssertionsPage(page));
+  baseAssertions: async ({ page }, use) => {
+    await use(new BaseAssertions(page));
   },
   loginPage: async ({ page }, use) => {
     await use(new LoginPage(page));
@@ -66,5 +70,11 @@ export const test = base.extend<MyPages>({
   },
   modalElement: async ({ page }, use) => {
     await use(new ModalElement(page));
+  },
+  checkoutPage: async ({ page }, use) => {
+    await use(new CheckoutPage(page));
+  },
+  paymentPage: async ({ page }, use) => {
+    await use(new PaymentPage(page));
   },
 });

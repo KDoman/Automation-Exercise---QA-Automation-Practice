@@ -10,4 +10,12 @@ export class ModalElement {
   async clickOnViewCartLink() {
     await this.page.getByRole("link", { name: "View Cart" }).click();
   }
+
+  async clickOnRegisterLoginButton() {
+    await this.page.getByRole("link", { name: "Register / Login" }).click();
+  }
+
+  async clickOnContinueShopping() {
+    await this.page.getByRole("button", { name: "Continue Shopping" }).click();
+  }
 }

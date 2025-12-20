@@ -44,4 +44,13 @@ export class RegisterPage {
   async clickContinueButton() {
     await this.page.getByTestId("continue-button").click();
   }
+
+  async registerProcess(name: string, emailAddress: string) {
+    await this.fillRegisterInputs(name, emailAddress);
+    await this.clickSignUpButton();
+    await this.fillFormDetails();
+    await this.clickCreateAccountButton();
+    await this.expectAccountToBeCreated();
+    await this.clickContinueButton();
+  }
 }

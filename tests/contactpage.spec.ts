@@ -1,14 +1,14 @@
 import { test } from "../setup/baseTest";
-import { contactPageData } from "../setup/data";
+import { contactPageData } from "../utils/data";
 
-test("Test Case 6: Contact Us Form", async ({ navBar, contactPage, assertionsPage }) => {
+test("Test Case 6: Contact Us Form", async ({ navBar, contactPage, baseAssertions }) => {
   await navBar.clickOnTab(" Contact us");
   await contactPage.expectFormToBeVisible();
   await contactPage.fillContactPage(contactPageData.contactName, contactPageData.contactEmail, contactPageData.contactSubject, contactPageData.contactMessage, contactPageData.contactFile);
   await contactPage.sendContactPage();
   await contactPage.expectSuccessMessageToBeVisible();
   await contactPage.clickGreenHomeButton();
-  await assertionsPage.expectPageToShowHomepage();
+  await baseAssertions.expectPageToShowHomepage();
 });
 
 test("Test Case 10: Verify sign in to Subscription ", async ({ navBar, contactPage }) => {
