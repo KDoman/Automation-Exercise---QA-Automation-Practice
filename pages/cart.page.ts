@@ -22,4 +22,8 @@ export class CartPage {
     const cartItemsCount = await this.page.locator("#cart_info_table > tbody > tr").count();
     expect(cartItemsCount).toBe(itemsCount);
   }
+
+  async expectAddedItemToBeInCart(itemName: string) {
+    await expect(this.page.locator(".cart_description h4 a")).toHaveText(itemName, { ignoreCase: true });
+  }
 }

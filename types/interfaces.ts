@@ -17,3 +17,17 @@ export interface registerPageDataType {
   registeredName: string;
   registeredEmail: string;
 }
+
+export interface registerFormDataType {
+  gender: string;
+  firstName: string;
+  lastName: string;
+  address1: string;
+  address2: string;
+  company: string;
+  country: string;
+  state: string;
+  city: string;
+  zipCode: string;
+  mobileNumber: string;
+}

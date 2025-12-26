@@ -1,4 +1,5 @@
 import { expect, Page } from "@playwright/test";
+import { randomEmail, randomString } from "../utils/helpers";
 
 export class ProductDetailsPage {
   constructor(private page: Page) {}
@@ -16,5 +17,18 @@ export class ProductDetailsPage {
   }
   async clickOnAddToCartButtonOnDetailsPage() {
     await this.page.getByText("Add to cart").click();
+  }
+  async expectReviewTitleToBeVisible() {
+    await expect(this.page.getByText("Write Your Review")).toBeVisible();
+  }
+  async fillandSendReviewForm() {
+    await this.page.locator("#name").fill(randomString(5));
+    await this.page.locator("#email").fill(randomEmail());
+    await this.page.locator("#review").fill(randomString(20));
+    await this.page.getByRole("button", { name: "Submit" }).click();
+  }
+
+  async expectSuccessfullMessage() {
+    await expect(this.page.getByText("Thank you for your review.")).toBeVisible();
   }
 }

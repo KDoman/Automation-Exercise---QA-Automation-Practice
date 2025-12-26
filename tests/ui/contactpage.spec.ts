@@ -1,5 +1,5 @@
-import { test } from "../setup/baseTest";
-import { contactPageData } from "../utils/data";
+import { test } from "../../setup/baseTest";
+import { contactPageData } from "../../utils/data";
 
 test("Test Case 6: Contact Us Form", async ({ navBar, contactPage, baseAssertions }) => {
   await navBar.clickOnTab(" Contact us");
@@ -16,4 +16,11 @@ test("Test Case 10: Verify sign in to Subscription ", async ({ navBar, contactPa
   await contactPage.typeInSubscribeEmail();
   await contactPage.clickSubscribeButton();
   await contactPage.expectSuccessPopupToBeVisibleFor3Seconds();
+});
+
+test("Test Case 22: Add to cart from Recommended items", async ({ homePage, modalElement, cartPage }) => {
+  await homePage.scrollDownToRecommendedItems();
+  const recommendedItem = await homePage.addRandomRecommendedItemToCart();
+  await modalElement.clickOnViewCartLink();
+  await cartPage.expectAddedItemToBeInCart(recommendedItem!);
 });

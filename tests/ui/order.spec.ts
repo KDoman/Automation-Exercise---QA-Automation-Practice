@@ -1,5 +1,5 @@
-import { test } from "../setup/baseTest";
-import { registerPageData, loginPageData } from "../utils/data";
+import { test } from "../../setup/baseTest";
+import { registerPageData, loginPageData } from "../../utils/data";
 
 test("Test Case 14: Place Order: Register while Checkout", async ({ navBar, productPage, modalElement, cartPage, registerPage, homePage, checkoutPage, paymentPage }) => {
   await navBar.clickOnTab(" Products");
@@ -43,4 +43,21 @@ test("Test Case 16: Place Order: Login before Checkout", async ({ navBar, produc
   await checkoutPage.placeOrderClick();
   await paymentPage.fillAndConfirmOrderPayment();
   await paymentPage.expectSuccessMessage();
+});
+
+test("Test Case 24: Download Invoice after purchase order", async ({ navBar, homePage, productPage, modalElement, cartPage, registerPage, checkoutPage, paymentPage }) => {
+  await homePage.clickViewProductButtonFirstProduct();
+  await productPage.clickOnAddToCartButton();
+  await modalElement.clickOnViewCartLink();
+  await cartPage.clickProceedToCheckoutButton();
+  await modalElement.clickOnRegisterLoginButton();
+  const accountData = await registerPage.registerProcess(registerPageData.notRegisterEmail, registerPageData.notRegisterEmail);
+  await navBar.clickOnTab(" Cart");
+  await cartPage.clickProceedToCheckoutButton();
+  await checkoutPage.verifyAddressInformation(accountData);
+  await checkoutPage.enterComment("Please watch out during transport, thanks!");
+  await checkoutPage.placeOrderClick();
+  await paymentPage.fillAndConfirmOrderPayment();
+  await paymentPage.expectSuccessMessage();
+  await paymentPage.downloadAndVerifyFile(accountData);
 });

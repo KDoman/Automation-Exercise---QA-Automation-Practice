@@ -1,5 +1,5 @@
 const filePath = "./utils/example.png";
-import { loginPageDataType, contactPageDataType, registerPageDataType } from "../types/interfaces";
+import { loginPageDataType, contactPageDataType, registerPageDataType, registerFormDataType } from "../types/interfaces";
 import { randomString } from "./helpers";
 
 const loginPageData: loginPageDataType = {
@@ -24,4 +24,18 @@ const registerPageData: registerPageDataType = {
   registeredEmail: loginPageData.correctLogin,
 };
 
-export { loginPageData, contactPageData, registerPageData };
+const registerForm: registerFormDataType = {
+  gender: "Mr.",
+  firstName: "first name" + randomString(5),
+  lastName: "last name" + randomString(5),
+  address1: "address1" + randomString(5),
+  address2: "address2" + randomString(5),
+  company: "company" + randomString(5),
+  country: "United States",
+  state: "state_QA",
+  city: "city_QA",
+  zipCode: "00-111",
+  mobileNumber: "111-222-333",
+};
+
+export { loginPageData, contactPageData, registerPageData, registerForm };

@@ -1,4 +1,6 @@
 import { expect, Page } from "@playwright/test";
+import { randomString } from "../utils/helpers";
+import { registerForm } from "../utils/data";
 
 export class RegisterPage {
   constructor(private page: Page) {}
@@ -18,19 +20,23 @@ export class RegisterPage {
     await expect(this.page.getByRole("heading", { name: "Enter Account Information" })).toBeVisible();
   }
   async fillFormDetails() {
-    await this.page.getByLabel("Mr.").check();
-    await this.page.getByTestId("password").fill("Password/QA");
+    await this.page.getByLabel(registerForm.gender).check();
+    await this.page.getByTestId("password").fill("password" + randomString(5));
     await this.page.getByTestId("days").selectOption("1");
     await this.page.getByTestId("months").selectOption("1");
     await this.page.getByTestId("years").selectOption("2021");
-    await this.page.getByTestId("first_name").fill("first_name_QA");
-    await this.page.getByTestId("last_name").fill("last_name_QA");
-    await this.page.getByTestId("address").fill("address_QA");
-    await this.page.getByTestId("country").selectOption("United States");
-    await this.page.getByTestId("state").fill("state_QA");
-    await this.page.getByTestId("city").fill("city_QA");
-    await this.page.getByTestId("zipcode").fill("00-111");
-    await this.page.getByTestId("mobile_number").fill("111-222-333");
+    await this.page.getByTestId("first_name").fill(registerForm.firstName);
+    await this.page.getByTestId("last_name").fill(registerForm.lastName);
+    await this.page.getByTestId("company").fill(registerForm.company);
+    await this.page.getByTestId("address").fill(registerForm.address1);
+    await this.page.getByTestId("address2").fill(registerForm.address2);
+    await this.page.getByTestId("country").selectOption(registerForm.country);
+    await this.page.getByTestId("state").fill(registerForm.state);
+    await this.page.getByTestId("city").fill(registerForm.city);
+    await this.page.getByTestId("zipcode").fill(registerForm.zipCode);
+    await this.page.getByTestId("mobile_number").fill(registerForm.mobileNumber);
+
+    return registerForm;
   }
 
   async clickCreateAccountButton() {
@@ -48,9 +54,11 @@ export class RegisterPage {
   async registerProcess(name: string, emailAddress: string) {
     await this.fillRegisterInputs(name, emailAddress);
     await this.clickSignUpButton();
-    await this.fillFormDetails();
+    const accountData = await this.fillFormDetails();
     await this.clickCreateAccountButton();
     await this.expectAccountToBeCreated();
     await this.clickContinueButton();
+
+    return accountData;
   }
 }

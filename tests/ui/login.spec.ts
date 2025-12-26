@@ -1,5 +1,5 @@
-import { test } from "../setup/baseTest";
-import { loginPageData } from "../utils/data";
+import { test } from "../../setup/baseTest";
+import { loginPageData } from "../../utils/data";
 
 test("Test Case 2: Login User with correct email and password", async ({ navBar, loginPage }) => {
   await navBar.clickOnTab(" Signup / Login");

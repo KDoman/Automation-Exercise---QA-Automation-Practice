@@ -1,5 +1,5 @@
-import { test } from "../setup/baseTest";
-import { registerPageData } from "../utils/data";
+import { test } from "../../setup/baseTest";
+import { registerPageData } from "../../utils/data";
 
 test("Test Case 1: Register User", async ({ navBar, registerPage, baseAssertions }) => {
   await navBar.clickOnTab(" Signup / Login");

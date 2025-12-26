@@ -24,4 +24,8 @@ export class LoginPage {
     await this.fillInputs(email, password);
     await this.sendForm();
   }
+
+  async expectAccountToBeDeleted() {
+    await expect(this.page.getByRole("heading", { name: "Account Deleted!" })).toBeVisible();
+  }
 }
