@@ -18,7 +18,7 @@ test("API 3: Get All Brands List", async ({ request }) => {
   expect(data.brands).toStrictEqual(allBrands);
 });
 
-test.only("API 14: GET user account detail by email", async ({ request }) => {
+test("API 14: GET user account detail by email", async ({ request }) => {
   const response = await request.get("https://automationexercise.com/api/getUserDetailByEmail", {
     params: {
       email: loginPageData.correctLogin,
